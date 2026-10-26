@@ -1,0 +1,127 @@
+{
+  "case_id": "legacy_sas_001",
+  "version_motor": "v1",
+  "pesos": {
+    "nombre": 0.5,
+    "descripcion": 0.3,
+    "tipo": 0.2
+  },
+  "metricas": {
+    "campos_evaluados": 6,
+    "conteo": {
+      "PARTIALLY_CORRECT": 3,
+      "CORRECT": 3
+    },
+    "precision_estricta": 0.5,
+    "precision_con_parciales": 1.0,
+    "esperado_en_top3": 1.0,
+    "por_tipo_esperado": {
+      "MATCH_1_1": {
+        "PARTIALLY_CORRECT": 1,
+        "CORRECT": 1
+      },
+      "PARTIAL": {
+        "PARTIALLY_CORRECT": 1
+      },
+      "DERIVED": {
+        "CORRECT": 1
+      },
+      "MATCH_1_N": {
+        "PARTIALLY_CORRECT": 1
+      },
+      "GAP": {
+        "CORRECT": 1
+      }
+    },
+    "campos_sin_respuesta_esperada": []
+  },
+  "detalle": [
+    {
+      "legacy_field": "cli_id",
+      "tipo_esperado": "MATCH_1_1",
+      "tipo_propuesto": "MATCH_1_1",
+      "ada_esperado": [
+        "ada_cliente.customer_id"
+      ],
+      "ada_propuesto": [
+        "ada_cliente.customer_id"
+      ],
+      "empate": true,
+      "esperado_en_top3": true,
+      "clase": "PARTIALLY_CORRECT",
+      "motivo": "el campo esperado esta entre los candidatos empatados"
+    },
+    {
+      "legacy_field": "cli_nom",
+      "tipo_esperado": "MATCH_1_1",
+      "tipo_propuesto": "MATCH_1_1",
+      "ada_esperado": [
+        "ada_cliente.customer_name"
+      ],
+      "ada_propuesto": [
+        "ada_cliente.customer_name"
+      ],
+      "empate": false,
+      "esperado_en_top3": true,
+      "clase": "CORRECT",
+      "motivo": "tipo y campo ADA coinciden"
+    },
+    {
+      "legacy_field": "fec_alta",
+      "tipo_esperado": "PARTIAL",
+      "tipo_propuesto": "MATCH_1_1",
+      "ada_esperado": [
+        "ada_cliente.registration_year"
+      ],
+      "ada_propuesto": [
+        "ada_cliente.registration_year"
+      ],
+      "empate": false,
+      "esperado_en_top3": true,
+      "clase": "PARTIALLY_CORRECT",
+      "motivo": "se encontro al menos un campo ADA esperado, pero el tipo propuesto fue MATCH_1_1 y se esperaba PARTIAL"
+    },
+    {
+      "legacy_field": "saldo_total",
+      "tipo_esperado": "DERIVED",
+      "tipo_propuesto": "DERIVED",
+      "ada_esperado": [
+        "ada_posicion_mensual.balance_amount"
+      ],
+      "ada_propuesto": [
+        "ada_posicion_mensual.balance_amount"
+      ],
+      "empate": false,
+      "esperado_en_top3": true,
+      "clase": "CORRECT",
+      "motivo": "tipo y campo ADA coinciden"
+    },
+    {
+      "legacy_field": "monto_neto_total",
+      "tipo_esperado": "MATCH_1_N",
+      "tipo_propuesto": "DERIVED",
+      "ada_esperado": [
+        "ada_posicion_mensual.gross_amount",
+        "ada_posicion_mensual.discount_pct"
+      ],
+      "ada_propuesto": [
+        "ada_posicion_mensual.gross_amount"
+      ],
+      "empate": false,
+      "esperado_en_top3": true,
+      "clase": "PARTIALLY_CORRECT",
+      "motivo": "se encontro al menos un campo ADA esperado, pero el tipo propuesto fue DERIVED y se esperaba MATCH_1_N"
+    },
+    {
+      "legacy_field": "segmento",
+      "tipo_esperado": "GAP",
+      "tipo_propuesto": "GAP",
+      "ada_esperado": [],
+      "ada_propuesto": [],
+      "empate": false,
+      "esperado_en_top3": null,
+      "clase": "CORRECT",
+      "motivo": "gap detectado correctamente"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "case_id": "legacy_sas_001",
+  "mock_version": "v1",
+  "expected": [
+    {"legacy_field": "cli_id", "expected_type": "MATCH_1_1", "expected_ada": ["ada_cliente.customer_id"]},
+    {"legacy_field": "cli_nom", "expected_type": "MATCH_1_1", "expected_ada": ["ada_cliente.customer_name"]},
+    {"legacy_field": "fec_alta", "expected_type": "PARTIAL", "expected_ada": ["ada_cliente.registration_year"]},
+    {"legacy_field": "saldo_total", "expected_type": "DERIVED", "expected_ada": ["ada_posicion_mensual.balance_amount"]},
+    {"legacy_field": "monto_neto_total", "expected_type": "MATCH_1_N", "expected_ada": ["ada_posicion_mensual.gross_amount", "ada_posicion_mensual.discount_pct"]},
+    {"legacy_field": "segmento", "expected_type": "GAP", "expected_ada": []}
+  ]
+}

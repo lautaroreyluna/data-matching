@@ -1,0 +1,49 @@
+{
+  "mock_version": "v1",
+  "ada_mode": "MOCK_ADA",
+  "tables": [
+    {
+      "table": "ada_cliente",
+      "description": "Datos maestros de clientes",
+      "granularity": "cliente",
+      "fields": [
+        {"field": "customer_id", "type": "INTEGER", "description": "Identificador unico del cliente"},
+        {"field": "customer_name", "type": "STRING", "description": "Nombre completo del cliente"},
+        {"field": "registration_year", "type": "INTEGER", "description": "Anio en que el cliente fue dado de alta"},
+        {"field": "customer_status", "type": "STRING", "description": "Estado del cliente: activo o inactivo"}
+      ]
+    },
+    {
+      "table": "ada_posicion_mensual",
+      "description": "Posicion mensual de cuentas por cliente",
+      "granularity": "cliente-mes",
+      "fields": [
+        {"field": "customer_id", "type": "INTEGER", "description": "Identificador unico del cliente"},
+        {"field": "period_month", "type": "STRING", "description": "Mes del periodo en formato AAAA-MM"},
+        {"field": "account_type", "type": "STRING", "description": "Tipo de cuenta"},
+        {"field": "balance_amount", "type": "DECIMAL", "description": "Saldo mensual de la cuenta"},
+        {"field": "gross_amount", "type": "DECIMAL", "description": "Importe bruto de la operacion"},
+        {"field": "discount_pct", "type": "DECIMAL", "description": "Porcentaje de descuento aplicado"}
+      ]
+    },
+    {
+      "table": "ada_tercero",
+      "description": "Terceros relacionados con la entidad",
+      "granularity": "tercero",
+      "fields": [
+        {"field": "party_id", "type": "INTEGER", "description": "Identificador del tercero"},
+        {"field": "party_name", "type": "STRING", "description": "Nombre del tercero"},
+        {"field": "party_type", "type": "STRING", "description": "Tipo de tercero"}
+      ]
+    },
+    {
+      "table": "ada_riesgo",
+      "description": "Clasificacion de riesgo por cliente",
+      "granularity": "cliente",
+      "fields": [
+        {"field": "customer_id", "type": "INTEGER", "description": "Identificador unico del cliente"},
+        {"field": "risk_category", "type": "STRING", "description": "Categoria de riesgo crediticio asignada al cliente"}
+      ]
+    }
+  ]
+}

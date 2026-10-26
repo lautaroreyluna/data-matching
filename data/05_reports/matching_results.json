@@ -1,0 +1,243 @@
+{
+  "version_motor": "v1",
+  "mock_version": "v1",
+  "pesos": {
+    "nombre": 0.5,
+    "descripcion": 0.3,
+    "tipo": 0.2
+  },
+  "umbrales": {
+    "gap": 0.45,
+    "auto": 0.8,
+    "empate": 0.02
+  },
+  "resumen": {
+    "MATCH_1_1": 3,
+    "DERIVED": 2,
+    "GAP": 1
+  },
+  "resultados": [
+    {
+      "legacy_field": "cli_id",
+      "expresion": "a.cli_id",
+      "tipo_propuesto": "MATCH_1_1",
+      "estado": "REVIEW_REQUIRED",
+      "empate": true,
+      "mejor_score": 1.0,
+      "candidatos": [
+        {
+          "ada": "ada_cliente.customer_id",
+          "score": 1.0,
+          "senales": {
+            "nombre": 1.0,
+            "descripcion": 1.0,
+            "tipo": 1.0
+          }
+        },
+        {
+          "ada": "ada_posicion_mensual.customer_id",
+          "score": 1.0,
+          "senales": {
+            "nombre": 1.0,
+            "descripcion": 1.0,
+            "tipo": 1.0
+          }
+        },
+        {
+          "ada": "ada_riesgo.customer_id",
+          "score": 1.0,
+          "senales": {
+            "nombre": 1.0,
+            "descripcion": 1.0,
+            "tipo": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "legacy_field": "cli_nom",
+      "expresion": "b.cli_nom",
+      "tipo_propuesto": "MATCH_1_1",
+      "estado": "AUTO",
+      "empate": false,
+      "mejor_score": 1.0,
+      "candidatos": [
+        {
+          "ada": "ada_cliente.customer_name",
+          "score": 1.0,
+          "senales": {
+            "nombre": 1.0,
+            "descripcion": 1.0,
+            "tipo": 1.0
+          }
+        },
+        {
+          "ada": "ada_cliente.customer_status",
+          "score": 0.6119,
+          "senales": {
+            "nombre": 0.5238,
+            "descripcion": 0.5,
+            "tipo": 1.0
+          }
+        },
+        {
+          "ada": "ada_tercero.party_name",
+          "score": 0.5203,
+          "senales": {
+            "nombre": 0.3406,
+            "descripcion": 0.5,
+            "tipo": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "legacy_field": "fec_alta",
+      "expresion": "b.fec_alta",
+      "tipo_propuesto": "MATCH_1_1",
+      "estado": "REVIEW_REQUIRED",
+      "empate": false,
+      "mejor_score": 0.5098,
+      "candidatos": [
+        {
+          "ada": "ada_cliente.registration_year",
+          "score": 0.5098,
+          "senales": {
+            "nombre": 0.5196,
+            "descripcion": 0.5,
+            "tipo": 0.5
+          }
+        },
+        {
+          "ada": "ada_riesgo.risk_category",
+          "score": 0.2167,
+          "senales": {
+            "nombre": 0.2333,
+            "descripcion": 0.0,
+            "tipo": 0.5
+          }
+        },
+        {
+          "ada": "ada_cliente.customer_status",
+          "score": 0.2094,
+          "senales": {
+            "nombre": 0.2188,
+            "descripcion": 0.0,
+            "tipo": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "legacy_field": "saldo_total",
+      "expresion": "sum(a.saldo_escalado)",
+      "tipo_propuesto": "DERIVED",
+      "estado": "REVIEW_REQUIRED",
+      "empate": false,
+      "mejor_score": 0.563,
+      "candidatos": [
+        {
+          "ada": "ada_posicion_mensual.balance_amount",
+          "score": 0.563,
+          "senales": {
+            "nombre": 0.4259,
+            "descripcion": 0.5,
+            "tipo": 1.0
+          }
+        },
+        {
+          "ada": "ada_posicion_mensual.gross_amount",
+          "score": 0.28,
+          "senales": {
+            "nombre": 0.16,
+            "descripcion": 0.0,
+            "tipo": 1.0
+          }
+        },
+        {
+          "ada": "ada_posicion_mensual.discount_pct",
+          "score": 0.26,
+          "senales": {
+            "nombre": 0.12,
+            "descripcion": 0.0,
+            "tipo": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "legacy_field": "monto_neto_total",
+      "expresion": "sum(a.monto_neto)",
+      "tipo_propuesto": "DERIVED",
+      "estado": "REVIEW_REQUIRED",
+      "empate": false,
+      "mejor_score": 0.5054,
+      "candidatos": [
+        {
+          "ada": "ada_posicion_mensual.gross_amount",
+          "score": 0.5054,
+          "senales": {
+            "nombre": 0.4107,
+            "descripcion": 0.3333,
+            "tipo": 1.0
+          }
+        },
+        {
+          "ada": "ada_posicion_mensual.balance_amount",
+          "score": 0.4125,
+          "senales": {
+            "nombre": 0.425,
+            "descripcion": 0.0,
+            "tipo": 1.0
+          }
+        },
+        {
+          "ada": "ada_posicion_mensual.discount_pct",
+          "score": 0.3071,
+          "senales": {
+            "nombre": 0.2143,
+            "descripcion": 0.0,
+            "tipo": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "legacy_field": "segmento",
+      "expresion": "'ALTO'",
+      "tipo_propuesto": "GAP",
+      "estado": "GAP",
+      "empate": false,
+      "mejor_score": 0.2,
+      "candidatos": [
+        {
+          "ada": "ada_cliente.customer_name",
+          "score": 0.2,
+          "senales": {
+            "nombre": 0.2,
+            "descripcion": 0.0,
+            "tipo": 0.5
+          }
+        },
+        {
+          "ada": "ada_cliente.customer_status",
+          "score": 0.1909,
+          "senales": {
+            "nombre": 0.1818,
+            "descripcion": 0.0,
+            "tipo": 0.5
+          }
+        },
+        {
+          "ada": "ada_tercero.party_name",
+          "score": 0.1882,
+          "senales": {
+            "nombre": 0.1765,
+            "descripcion": 0.0,
+            "tipo": 0.5
+          }
+        }
+      ]
+    }
+  ]
+}

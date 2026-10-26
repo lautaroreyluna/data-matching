@@ -1,0 +1,123 @@
+{
+  "archivo_origen": "cases/legacy_sas_001/RUN-001/01_legacy/proceso_01_cartera.sas",
+  "libnames": {
+    "legacy": "/datos/legacy",
+    "out": "/datos/salida"
+  },
+  "variables_macro": {
+    "anio": "2026",
+    "mes": "'M10'"
+  },
+  "pasos": [
+    {
+      "orden": 1,
+      "tipo": "data_step",
+      "tabla_salida": "work.saldos_prep",
+      "tablas_entrada": [
+        {
+          "tabla": "legacy.saldos_mensuales",
+          "alias": null
+        }
+      ],
+      "filtro": "anio = &anio. and mes = &mes. and tipo_cuenta in ('AC', 'PA')",
+      "filtro_resuelto": "anio = 2026 and mes = 'M10' and tipo_cuenta in ('AC', 'PA')",
+      "campos_calculados": [
+        {
+          "campo": "saldo_escalado",
+          "expresion": "saldo * 1000",
+          "condicion": null
+        },
+        {
+          "campo": "monto_neto",
+          "expresion": "monto_base * (1 - descuento_pct / 100)",
+          "condicion": null
+        }
+      ]
+    },
+    {
+      "orden": 2,
+      "tipo": "proc_sql",
+      "tabla_salida": "work.cartera_cliente",
+      "tablas_entrada": [
+        {
+          "tabla": "work.saldos_prep",
+          "alias": "a"
+        },
+        {
+          "tabla": "legacy.clientes",
+          "alias": "b"
+        }
+      ],
+      "joins": [
+        {
+          "tipo": "inner",
+          "tabla": "legacy.clientes",
+          "alias": "b",
+          "condicion": "a.cli_id = b.cli_id"
+        }
+      ],
+      "filtro": "b.estado = 'A'",
+      "group_by": [
+        "a.cli_id",
+        "b.cli_nom",
+        "b.fec_alta"
+      ],
+      "campos": [
+        {
+          "campo": "cli_id",
+          "expresion": "a.cli_id"
+        },
+        {
+          "campo": "cli_nom",
+          "expresion": "b.cli_nom"
+        },
+        {
+          "campo": "fec_alta",
+          "expresion": "b.fec_alta"
+        },
+        {
+          "campo": "saldo_total",
+          "expresion": "sum(a.saldo_escalado)"
+        },
+        {
+          "campo": "monto_neto_total",
+          "expresion": "sum(a.monto_neto)"
+        }
+      ]
+    },
+    {
+      "orden": 3,
+      "tipo": "data_step",
+      "tabla_salida": "out.cartera_final",
+      "tablas_entrada": [
+        {
+          "tabla": "work.cartera_cliente",
+          "alias": null
+        }
+      ],
+      "filtro": null,
+      "filtro_resuelto": null,
+      "campos_calculados": [
+        {
+          "campo": "segmento",
+          "expresion": "'ALTO'",
+          "condicion": "saldo_total >= 100000"
+        },
+        {
+          "campo": "segmento",
+          "expresion": "'ESTANDAR'",
+          "condicion": "else"
+        }
+      ]
+    }
+  ],
+  "tablas_origen": [
+    "legacy.saldos_mensuales",
+    "legacy.clientes"
+  ],
+  "tablas_creadas": [
+    "work.saldos_prep",
+    "work.cartera_cliente",
+    "out.cartera_final"
+  ]
+}
